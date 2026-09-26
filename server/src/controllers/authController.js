@@ -22,10 +22,11 @@ const register = async (req, res, next) => {
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ success: false, message: 'Email already registered.' });
+      return res.status(409).json({ success: false, message: 'An account with this email already exists.' });
     }
 
-    const user = await User.create({ name, email, password, role: userRole });
+    const { phone, organization } = req.body;
+    const user = await User.create({ name, email, password, role: userRole, phone, organization });
 
     await logAction({ user, action: 'USER_REGISTERED', resource: 'User', resourceId: user._id, req });
 
