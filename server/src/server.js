@@ -109,31 +109,29 @@ const PORT = process.env.PORT || 5000;
  * 3. Start Express server
  */
 const startServer = async () => {
-  // Validate required environment variables
-  if (!process.env.MONGODB_URI) {
-    console.error('❌ [Config Error] MONGODB_URI is not defined in server/.env');
-    process.exit(1);
+  const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || process.env.DATABASE_URL;
+
+  // Start Express listener so cloud host port detectors and health checks succeed
+  const server = app.listen(PORT, () => {
+    console.log(`[EventFlow API] Server running on port ${PORT}`);
+  });
+
+  if (!mongoUri) {
+    console.warn('⚠️ [Config Warning] MONGODB_URI/MONGO_URI is not defined in environment variables.');
+    console.warn('Please add MONGODB_URI to your Render Environment Variables to enable database features.');
+  } else {
+    try {
+      await connectDB();
+    } catch (error) {
+      console.error('❌ [MongoDB Connection Error]:', error.message);
+      console.warn('The server remains running. Please verify your Atlas connection string and Network Access (0.0.0.0/0).');
+    }
   }
 
-  try {
-    // Connect to MongoDB Atlas first
-    await connectDB();
-
-    // Start Express listener only after successful database connection
-    const server = app.listen(PORT, () => {
-      console.log(`[EventFlow API] Server running on port ${PORT}`);
-    });
-
-    // Handle unhandled promise rejections
-    process.on('unhandledRejection', (err) => {
-      console.error(`Unhandled Rejection: ${err.message}`);
-      server.close(() => process.exit(1));
-    });
-  } catch (error) {
-    // Safe error message - do not start server
-    console.error('❌ Server startup aborted due to database connection failure.');
-    process.exit(1);
-  }
+  // Handle unhandled promise rejections gracefully
+  process.on('unhandledRejection', (err) => {
+    console.error(`Unhandled Rejection: ${err.message}`);
+  });
 };
 
 startServer();

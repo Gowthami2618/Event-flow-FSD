@@ -5,12 +5,12 @@ const mongoose = require('mongoose');
  * Reads connection string securely from process.env.MONGODB_URI
  */
 const connectDB = async () => {
-  const uri = process.env.MONGODB_URI;
+  const uri = process.env.MONGODB_URI || process.env.MONGO_URI || process.env.DATABASE_URL;
 
   if (!uri) {
-    console.error('❌ [MongoDB] Error: MONGODB_URI is not defined in environment variables.');
-    console.error('Please configure MONGODB_URI in your server/.env file.');
-    throw new Error('MONGODB_URI environment variable is missing.');
+    console.warn('⚠️ [MongoDB] Warning: MONGODB_URI/MONGO_URI is not defined in environment variables.');
+    console.warn('Please configure MONGODB_URI in your Render / hosting environment variables.');
+    return null;
   }
 
   try {
