@@ -1,0 +1,15 @@
+{
+  "name": "eventflow-server",
+  "version": "1.0.0",
+  "description": "EventFlow Smart Event Planning & Management Platform - Backend API",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["events", "eventflow", "nodejs", "express", "mongodb"],
+  "author": "EventFlow Team",
+  "license": "MIT"
+}

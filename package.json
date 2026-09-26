@@ -1,0 +1,28 @@
+{
+  "name": "eventflow-workspace",
+  "version": "1.0.0",
+  "description": "EventFlow - Smart Event Planning & Management Platform",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,magenta\" \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "start": "node server/src/server.js",
+    "seed": "npm run seed --prefix server"
+  },
+  "keywords": [
+    "eventflow",
+    "react",
+    "vite",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "EventFlow Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}

@@ -1,0 +1,25 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+client/.env
+server/.env
+client/.env.*
+server/.env.*
+!client/.env.example
+!server/.env.example
+
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Production builds
+dist/
+client/dist/
+
+# Uploads and temporary files
+uploads/
+server/uploads/
+*.log
+.DS_Store
