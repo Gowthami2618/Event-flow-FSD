@@ -9,6 +9,7 @@
     "dev:server": "npm run dev --prefix server",
     "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
     "start": "node server/src/server.js",
     "seed": "npm run seed --prefix server"
   },
