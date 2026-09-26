@@ -1,15 +1,25 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Bell, ChevronDown, LogOut, User, Settings, LayoutDashboard, Menu, X } from 'lucide-react';
+import { Bell, ChevronDown, LogOut, User, Settings, LayoutDashboard, Menu, X, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const Navbar = ({ onMenuToggle, sidebarOpen }) => {
   const { user, logout, notifications, unreadCount, fetchNotifications } = useAuth();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem('eventflow_theme') || 'light');
   const navigate = useNavigate();
   const notifRef = useRef(null);
   const userRef = useRef(null);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('eventflow_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   useEffect(() => {
     if (user) fetchNotifications();
@@ -56,6 +66,17 @@ const Navbar = ({ onMenuToggle, sidebarOpen }) => {
       )}
 
       <div className="flex items-center gap-3">
+        {/* Theme Mode Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="btn btn-ghost btn-sm"
+          style={{ padding: '8px', color: 'var(--text-primary)' }}
+          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Warm Rose Light Mode'}
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+
         {user ? (
           <>
             {/* Notifications */}

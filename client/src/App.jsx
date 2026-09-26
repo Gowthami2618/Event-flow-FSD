@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Suspense, lazy } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute, PublicRoute } from './components/common/ProtectedRoute';
+import BotanicalBackground from './components/common/BotanicalBackground';
 
 // Lazy load pages for performance
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -41,6 +42,7 @@ function App() {
   return (
     <Router>
       <AuthProvider>
+        <BotanicalBackground />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* Public routes */}

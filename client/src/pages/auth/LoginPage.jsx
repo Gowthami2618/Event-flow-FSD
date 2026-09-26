@@ -41,8 +41,8 @@ const LoginPage = () => {
       overflow: 'hidden',
     }}>
       {/* Background orbs */}
-      <div style={{ position: 'absolute', top: '-150px', right: '-100px', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '-100px', left: '-100px', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '-150px', right: '-100px', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(198,106,134,0.22) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '-100px', left: '-100px', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(233,160,181,0.2) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div style={{ width: '100%', maxWidth: '440px', position: 'relative', zIndex: 1 }} className="animate-slideUp">
         {/* Logo */}
