@@ -871,32 +871,7 @@ tbody tr:hover {
   animation: floatSlow 15s ease-in-out infinite alternate-reverse;
 }
 
-/* ===================== GRID DISTORTION & BOTANICAL BACKGROUND DECOR ===================== */
-.grid-distortion-bg-layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  opacity: 0.18;
-}
-
-[data-theme="dark"] .grid-distortion-bg-layer {
-  opacity: 0.28;
-}
-
-.distortion-container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.distortion-container canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-}
-
+/* ===================== BOTANICAL & ABSTRACT BACKGROUND DECOR ===================== */
 .botanical-bg-layer {
   position: fixed;
   inset: 0;

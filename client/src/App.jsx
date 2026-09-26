@@ -3,7 +3,6 @@ import { Suspense, lazy } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute, PublicRoute } from './components/common/ProtectedRoute';
 import BotanicalBackground from './components/common/BotanicalBackground';
-import GridDistortionBackground from './components/common/GridDistortionBackground';
 
 // Lazy load pages for performance
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -43,7 +42,6 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <GridDistortionBackground />
         <BotanicalBackground />
         <Suspense fallback={<PageLoader />}>
           <Routes>
