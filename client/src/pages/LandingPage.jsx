@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, Users, Star, Zap, MapPin, Clock, ArrowRight, Shield, Cpu, Music, Briefcase, Heart, Dumbbell } from 'lucide-react';
 import Navbar from '../components/common/Navbar';
 import { eventService } from '../services';
+import { Scene } from '../components/common/Scene';
 
 const categoryIcons = { Technology: Cpu, Music, Business: Briefcase, 'Health & Wellness': Heart, 'Sports & Fitness': Dumbbell };
 
@@ -26,10 +27,12 @@ const LandingPage = () => {
   const formatDate = (date) => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
   return (
-    <div style={{ background: 'var(--bg-primary)' }}>
-      <Navbar />
+    <div style={{ position: 'relative', minHeight: '100vh', background: 'transparent' }}>
+      <Scene />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <Navbar />
 
-      {/* HERO */}
+        {/* HERO */}
       <section className="hero" style={{ padding: '100px 24px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
           <div className="badge badge-primary" style={{ display: 'inline-flex', marginBottom: '20px', padding: '6px 16px', fontSize: '13px' }}>
@@ -185,6 +188,7 @@ const LandingPage = () => {
         <span className="logo" style={{ fontSize: '1rem', display: 'block', marginBottom: '8px' }}>EventFlow</span>
         © {new Date().getFullYear()} EventFlow. All rights reserved.
       </footer>
+      </div>
     </div>
   );
 };
