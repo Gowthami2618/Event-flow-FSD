@@ -84,15 +84,17 @@ const AdminDashboard = () => {
         <div className="card">
           <h2 style={{ fontSize: '15px', fontWeight: 700, marginBottom: '20px' }}>Registration Trend (7 days)</h2>
           {data?.regTrend?.length > 0 ? (
-            <ResponsiveContainer width="100%" height={220}>
-              <LineChart data={data.regTrend}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-                <XAxis dataKey="_id" tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
-                <YAxis tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
-                <Tooltip content={customTooltip} />
-                <Line type="monotone" dataKey="count" stroke="var(--primary)" strokeWidth={2} dot={{ fill: 'var(--primary)', r: 4 }} name="Registrations" />
-              </LineChart>
-            </ResponsiveContainer>
+            <div style={{ width: '100%', minWidth: 0, overflow: 'hidden' }}>
+              <ResponsiveContainer width="100%" height={220}>
+                <LineChart data={data.regTrend}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                  <XAxis dataKey="_id" tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
+                  <YAxis tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
+                  <Tooltip content={customTooltip} />
+                  <Line type="monotone" dataKey="count" stroke="var(--primary)" strokeWidth={2} dot={{ fill: 'var(--primary)', r: 4 }} name="Registrations" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           ) : (
             <div className="empty-state" style={{ minHeight: '160px' }}><Activity size={28} /><p style={{ fontSize: '13px' }}>No data yet</p></div>
           )}

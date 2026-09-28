@@ -38,28 +38,19 @@ const RegisterPage = () => {
   const update = (field) => (e) => setForm({ ...form, [field]: e.target.value });
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'var(--gradient-hero)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '24px',
-      position: 'relative',
-      overflow: 'hidden',
-    }}>
+    <div className="auth-page-container">
       <div style={{ position: 'absolute', top: '-100px', left: '-100px', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(198,106,134,0.22) 0%, transparent 70%)', pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: '-100px', right: '-100px', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(233,160,181,0.2) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div style={{ width: '100%', maxWidth: '480px', position: 'relative', zIndex: 1 }} className="animate-slideUp">
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '28px' }}>
           <Link to="/" className="logo" style={{ fontSize: '1.75rem', display: 'block', marginBottom: '8px' }}>EventFlow</Link>
           <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Create your account and get started</p>
         </div>
 
-        <div className="glass" style={{ padding: '40px' }}>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '6px' }}>Create Account ✨</h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '28px' }}>Join thousands of event creators and attendees</p>
+        <div className="glass auth-card">
+          <h1 style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', fontWeight: 800, marginBottom: '6px' }}>Create Account ✨</h1>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '24px' }}>Join thousands of event creators and attendees</p>
 
           {error && <div className="alert alert-error" style={{ marginBottom: '20px' }}>{error}</div>}
 

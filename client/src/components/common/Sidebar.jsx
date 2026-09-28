@@ -35,7 +35,7 @@ const adminLinks = [
   { to: '/admin/audit-logs', icon: Shield, label: 'Audit Logs' },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -44,13 +44,29 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     await logout();
+    if (onClose) onClose();
     navigate('/');
   };
 
+  const handleLinkClick = () => {
+    if (onClose) onClose();
+  };
+
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar${isOpen ? ' open' : ''}`}>
       <div className="sidebar-brand">
-        <div className="logo" style={{ fontSize: '1.25rem', marginBottom: '12px' }}>EventFlow</div>
+        <div className="flex items-center justify-between" style={{ marginBottom: '12px' }}>
+          <div className="logo" style={{ fontSize: '1.25rem' }}>EventFlow</div>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="sidebar-close-btn"
+              aria-label="Close navigation menu"
+            >
+              &times;
+            </button>
+          )}
+        </div>
         <div className="flex items-center gap-3">
           <div className="avatar avatar-md" style={{ background: 'var(--gradient-primary)', flexShrink: 0 }}>
             {user?.avatar ? (
@@ -78,6 +94,7 @@ const Sidebar = () => {
             to={to}
             end={to.split('/').length <= 2}
             className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}
+            onClick={handleLinkClick}
           >
             <Icon size={18} />
             {label}

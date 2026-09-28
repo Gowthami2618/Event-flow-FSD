@@ -48,9 +48,9 @@ const Navbar = ({ onMenuToggle, sidebarOpen }) => {
         {onMenuToggle && (
           <button
             onClick={onMenuToggle}
-            className="btn btn-ghost btn-sm"
-            style={{ display: 'none', padding: '8px' }}
+            className="btn btn-ghost btn-sm navbar-toggle-btn"
             id="sidebar-toggle"
+            aria-label={sidebarOpen ? "Close menu" : "Open menu"}
           >
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -60,16 +60,16 @@ const Navbar = ({ onMenuToggle, sidebarOpen }) => {
 
       {/* Center nav links (public) */}
       {!user && (
-        <div className="flex items-center gap-2" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+        <div className="navbar-center-links">
           <Link to="/events" className="btn btn-ghost btn-sm">Browse Events</Link>
         </div>
       )}
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 navbar-actions">
         {/* Theme Mode Toggle */}
         <button
           onClick={toggleTheme}
-          className="btn btn-ghost btn-sm"
+          className="btn btn-ghost btn-sm theme-toggle-btn"
           style={{ padding: '8px', color: 'var(--text-primary)' }}
           title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Warm Rose Light Mode'}
           aria-label="Toggle theme"
@@ -85,6 +85,7 @@ const Navbar = ({ onMenuToggle, sidebarOpen }) => {
                 className="btn btn-ghost btn-sm"
                 onClick={() => setShowNotifications(!showNotifications)}
                 style={{ position: 'relative', padding: '8px' }}
+                aria-label="Notifications"
               >
                 <Bell size={18} />
                 {unreadCount > 0 && (
@@ -100,7 +101,7 @@ const Navbar = ({ onMenuToggle, sidebarOpen }) => {
               </button>
 
               {showNotifications && (
-                <div className="dropdown-menu" style={{ width: '320px', right: 0, left: 'auto' }}>
+                <div className="dropdown-menu notif-dropdown-menu">
                   <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--border-color)', fontWeight: 600, fontSize: '14px' }}>
                     Notifications {unreadCount > 0 && <span className="badge badge-error" style={{ marginLeft: 8 }}>{unreadCount}</span>}
                   </div>
@@ -130,9 +131,9 @@ const Navbar = ({ onMenuToggle, sidebarOpen }) => {
             {/* User menu */}
             <div className="dropdown" ref={userRef}>
               <button
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 user-pill-btn"
                 onClick={() => setShowUserMenu(!showUserMenu)}
-                style={{ padding: '6px 10px', borderRadius: 'var(--radius-md)', background: 'var(--bg-card)', border: '1px solid var(--border-color)', transition: 'all var(--transition-fast)' }}
+                aria-label="User menu"
               >
                 <div className="avatar avatar-sm" style={{ fontSize: '12px', background: 'var(--gradient-primary)' }}>
                   {user.avatar ? (
@@ -141,17 +142,17 @@ const Navbar = ({ onMenuToggle, sidebarOpen }) => {
                     user.name?.[0]?.toUpperCase()
                   )}
                 </div>
-                <span style={{ fontSize: '13px', fontWeight: 600, maxWidth: '120px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span className="navbar-user-name">
                   {user.name?.split(' ')[0]}
                 </span>
-                <span className={`badge badge-${user.role === 'admin' ? 'error' : user.role === 'organizer' ? 'warning' : 'primary'}`} style={{ fontSize: '10px', padding: '2px 6px' }}>
+                <span className={`badge badge-${user.role === 'admin' ? 'error' : user.role === 'organizer' ? 'warning' : 'primary'} navbar-role-badge`} style={{ fontSize: '10px', padding: '2px 6px' }}>
                   {user.role}
                 </span>
-                <ChevronDown size={14} />
+                <ChevronDown size={14} className="navbar-chevron" />
               </button>
 
               {showUserMenu && (
-                <div className="dropdown-menu">
+                <div className="dropdown-menu user-dropdown-menu">
                   <Link to={dashboardPath} className="dropdown-item" onClick={() => setShowUserMenu(false)}>
                     <LayoutDashboard size={15} /> Dashboard
                   </Link>
@@ -170,7 +171,7 @@ const Navbar = ({ onMenuToggle, sidebarOpen }) => {
             </div>
           </>
         ) : (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 navbar-auth-buttons">
             <Link to="/login" className="btn btn-secondary btn-sm">Login</Link>
             <Link to="/register" className="btn btn-primary btn-sm">Sign Up</Link>
           </div>

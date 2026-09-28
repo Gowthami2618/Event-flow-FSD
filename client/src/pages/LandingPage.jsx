@@ -33,23 +33,23 @@ const LandingPage = () => {
         <Navbar />
 
         {/* HERO */}
-      <section className="hero" style={{ padding: '100px 24px' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+      <section className="hero">
+        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1, width: '100%' }}>
           <div className="badge badge-primary" style={{ display: 'inline-flex', marginBottom: '20px', padding: '6px 16px', fontSize: '13px' }}>
             <Zap size={12} /> The Future of Event Management
           </div>
 
-          <h1 className="heading-xl" style={{ marginBottom: '24px', lineHeight: 1.1 }}>
+          <h1 className="heading-xl" style={{ marginBottom: '24px', lineHeight: 1.15 }}>
             Discover, Create &{' '}
             <span className="text-gradient">Manage Events</span>{' '}
             Like Never Before
           </h1>
 
-          <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px', lineHeight: 1.7 }}>
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)', color: 'var(--text-secondary)', marginBottom: '36px', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 }}>
             EventFlow connects passionate organizers with eager attendees. From intimate workshops to massive conferences — your perfect event awaits.
           </p>
 
-          <div className="flex items-center justify-center gap-3" style={{ flexWrap: 'wrap' }}>
+          <div className="hero-cta-buttons flex items-center justify-center gap-3">
             <Link to="/events" className="btn btn-primary btn-lg">
               <Calendar size={18} /> Explore Events <ArrowRight size={16} />
             </Link>
@@ -59,16 +59,16 @@ const LandingPage = () => {
           </div>
 
           {/* Stats row */}
-          <div className="flex items-center justify-center gap-6" style={{ marginTop: '60px', flexWrap: 'wrap' }}>
+          <div className="hero-stats-grid">
             {[
               { value: stats.events, label: 'Events Created' },
               { value: stats.attendees, label: 'Happy Attendees' },
               { value: stats.cities, label: 'Cities Covered' },
               { value: stats.rating, label: 'Average Rating' },
             ].map(({ value, label }) => (
-              <div key={label} style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem', fontWeight: 800, fontFamily: 'Plus Jakarta Sans, sans-serif', background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{value}</div>
-                <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '4px' }}>{label}</div>
+              <div key={label} className="hero-stat-item">
+                <div className="hero-stat-value">{value}</div>
+                <div className="hero-stat-label">{label}</div>
               </div>
             ))}
           </div>
@@ -77,9 +77,9 @@ const LandingPage = () => {
 
       {/* FEATURED EVENTS */}
       {featuredEvents.length > 0 && (
-        <section style={{ padding: '80px 24px', background: 'var(--bg-secondary)' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div className="flex justify-between items-center" style={{ marginBottom: '40px', flexWrap: 'wrap', gap: '12px' }}>
+        <section className="landing-section" style={{ background: 'var(--bg-secondary)' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+            <div className="flex justify-between items-center landing-section-header" style={{ marginBottom: '36px', flexWrap: 'wrap', gap: '12px' }}>
               <div>
                 <h2 className="heading-md">Featured Events</h2>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '4px' }}>Curated picks for the discerning attendee</p>
@@ -143,9 +143,9 @@ const LandingPage = () => {
       )}
 
       {/* FEATURES */}
-      <section style={{ padding: '80px 24px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+      <section className="landing-section">
+        <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
             <h2 className="heading-md" style={{ marginBottom: '12px' }}>Why Choose <span className="text-gradient">EventFlow</span>?</h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '500px', margin: '0 auto' }}>
               Built for everyone — from first-time attendees to seasoned event professionals.
@@ -167,15 +167,15 @@ const LandingPage = () => {
       </section>
 
       {/* CTA */}
-      <section style={{ padding: '80px 24px', background: 'var(--bg-secondary)' }}>
-        <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
-          <div className="glass" style={{ padding: '60px 40px', background: 'var(--gradient-card)', position: 'relative', overflow: 'hidden' }}>
+      <section className="landing-section" style={{ background: 'var(--bg-secondary)' }}>
+        <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center', width: '100%' }}>
+          <div className="glass landing-cta-card">
             <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%)', pointerEvents: 'none' }} />
             <h2 className="heading-md" style={{ marginBottom: '16px' }}>Ready to Get Started?</h2>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '32px', fontSize: '15px' }}>
               Create your free account today and start discovering amazing events in your city.
             </p>
-            <div className="flex items-center justify-center gap-3" style={{ flexWrap: 'wrap' }}>
+            <div className="flex items-center justify-center gap-3 hero-cta-buttons">
               <Link to="/register" className="btn btn-primary btn-lg">Create Free Account</Link>
               <Link to="/events" className="btn btn-secondary btn-lg">Browse Events</Link>
             </div>

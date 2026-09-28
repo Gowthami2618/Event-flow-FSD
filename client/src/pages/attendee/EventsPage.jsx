@@ -45,16 +45,16 @@ const EventsPage = () => {
       <Navbar />
 
       {/* Header */}
-      <div style={{ background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-color)', padding: '32px 24px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '8px' }}>Browse Events</h1>
+      <div className="events-page-header">
+        <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.75rem)', fontWeight: 800, marginBottom: '8px' }}>Browse Events</h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '24px' }}>
             {total > 0 ? `${total.toLocaleString()} events found` : 'Discover amazing events near you'}
           </p>
 
           {/* Search bar */}
-          <div className="flex items-center gap-3" style={{ flexWrap: 'wrap' }}>
-            <div className="search-container" style={{ flex: 1, minWidth: '260px' }}>
+          <div className="events-search-bar flex items-center gap-3">
+            <div className="search-container" style={{ flex: 1, minWidth: 'min(100%, 240px)' }}>
               <Search size={16} className="search-icon" />
               <input
                 type="text"
@@ -65,19 +65,21 @@ const EventsPage = () => {
                 style={{ minWidth: 'unset' }}
               />
             </div>
-            <button className="btn btn-secondary" onClick={() => setShowFilters(!showFilters)}>
-              <Filter size={15} /> Filters {hasFilters && <span className="badge badge-primary" style={{ padding: '1px 6px', fontSize: '10px' }}>ON</span>}
-            </button>
-            {hasFilters && (
-              <button className="btn btn-ghost btn-sm" onClick={clearFilters}>
-                <X size={14} /> Clear
+            <div className="events-filter-actions flex items-center gap-2">
+              <button className="btn btn-secondary" onClick={() => setShowFilters(!showFilters)}>
+                <Filter size={15} /> Filters {hasFilters && <span className="badge badge-primary" style={{ padding: '1px 6px', fontSize: '10px' }}>ON</span>}
               </button>
-            )}
+              {hasFilters && (
+                <button className="btn btn-ghost btn-sm" onClick={clearFilters}>
+                  <X size={14} /> Clear
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Filter panel */}
           {showFilters && (
-            <div className="grid grid-4" style={{ marginTop: '16px', gap: '12px' }}>
+            <div className="grid grid-4 filter-grid" style={{ marginTop: '16px', gap: '12px' }}>
               <div className="form-group">
                 <label className="form-label">Category</label>
                 <select className="form-input" value={filters.category} onChange={update('category')}>
@@ -112,7 +114,7 @@ const EventsPage = () => {
       </div>
 
       {/* Events Grid */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 24px' }}>
+      <div className="events-page-body">
         {loading ? (
           <div className="grid grid-auto">
             {[...Array(6)].map((_, i) => (
